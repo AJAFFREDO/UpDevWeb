@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progression BTS SIO - UpDev</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header class="app-header">
+  <a href="../index.html" class="header-link">Accueil</a>
+  <a href="../index.html" class="header-title">UpDev - BTS SIO</a>
+  <div></div>
+</header>
+
+<div class="app-container">
+  <h1 class="page-title">📊 Ma Progression</h1>
+
+  <div class="progress-summary">
+    <div class="summary-card">
+      <h3>Quiz complétés</h3>
+      <p id="completed-count">0</p>
+    </div>
+    <div class="summary-card">
+      <h3>Taux de réussite</h3>
+      <p id="success-rate">0%</p>
+    </div>
+    <div class="summary-card">
+      <h3>Compétences validées</h3>
+      <p id="competences-count">0</p>
+    </div>
+  </div>
+
+  <div class="progress-details">
+    <h2>Détail par quiz</h2>
+    <div id="progress-table-container">
+      <p>Chargement de votre progression...</p>
+    </div>
+  </div>
+
+  <div class="bts-competences">
+    <h2>📚 Référentiel BTS SIO</h2>
+    <div id="competences-list">
+      <!-- Généré dynamiquement -->
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const progress = JSON.parse(localStorage.getItem('btsSioProgress') || '{}');
+    const competencesBTS = {
+      "CE1.1": "Développer des interfaces web",
+      "CE1.3": "Mettre en place une base de données",
+      "CE1.4": "Développer des composants d'accès aux données"
+    };
+
+    // Calcul des métriques
+    const completedQuizzes = Object.keys(progress).length;
+    const validatedQuizzes = Object.values(progress).filter(q => q.isValidated).length;
+    const successRate = completedQuizzes > 0 ? Math.round((validatedQuizzes / completedQuizzes) * 100) : 0;
+
+    // Mise à jour du résumé
+    document.getElementById('completed-count').textContent = `${validatedQuizzes}/${completedQuizzes}`;
+    document.getElementById('success-rate').textContent = `${successRate}%`;
+
+    // Génération du tableau
+    if (completedQuizzes > 0) {
+      let html = `
+                <table class="progress-table">
+                    <thead>
+                        <tr>
+                            <th>Quiz</th>
+                            <th>Score</th>
+                            <th>Date</th>
+                            <th>Statut</th>
+                            <th>Compétences</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+
+      Object.entries(progress).forEach(([quiz, data]) => {
+        html += `
+                    <tr>
+                        <td>${quiz}</td>
+                        <td>${data.score}/${data.total} (${data.percentage}%)</td>
+                        <td>${data.date}</td>
+                        <td>${data.isValidated ? '✅ Validé' : '❌ Non validé'}</td>
+                        <td>${data.competences.map(c =>
+                `<span class="competence-badge">${c}</span>`).join(' ')}</td>
+                    </tr>`;
+      });
+
+      html += `</tbody></table>`;
+      document.getElementById('progress-table-container').innerHTML = html;
+    } else {
+      document.getElementById('progress-table-container').innerHTML =
+              '<p class="no-data">Aucun quiz complété pour le moment.</p>';
+    }
+
+    // Liste des compétences BTS
+    let competencesHtml = '<div class="competence-grid">';
+    Object.entries(competencesBTS).forEach(([code, desc]) => {
+      competencesHtml += `
+                <div class="competence-item">
+                    <strong>${code}</strong>: ${desc}
+                </div>`;
+    });
+    competencesHtml += '</div>';
+    document.getElementById('competences-list').innerHTML = competencesHtml;
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #1a1a1a;
+    color: white;
+    padding-top: 80px;
+    min-height: 100vh;
+}
+
+/* Header */
+.app-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #333;
+    z-index: 1000;
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+}
+
+.header-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.header-link:hover {
+    background-color: #333;
+}
+
+/* Conteneurs principaux */
+.app-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.quiz-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Menu principal */
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-button {
+    padding: 15px;
+    font-size: 18px;
+    background-color: #2c2c2e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.menu-button:hover {
+    background-color: #3a3a3c;
+    transform: translateY(-2px);
+}
+
+/* Page Apprendre */
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.lessons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lesson-button {
+    padding: 16px 20px;
+    font-size: 16px;
+    background-color: #2c2c2e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.lesson-button:hover {
+    background-color: #3a3a3c;
+}
+
+/* Styles du Quiz */
+.quiz-header {
+    margin-bottom: 30px;
+}
+
+.lesson-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.question-progress {
+    font-size: 16px;
+    color: #aaaaaa;
+    margin-bottom: 20px;
+}
+
+.question-text {
+    font-size: 18px;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.answers-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.answer-btn {
+    padding: 15px 20px;
+    background-color: #2c2c2e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.answer-btn:hover {
+    background-color: #3a3a3c;
+}
+
+.answer-btn.selected {
+    background-color: #4a6fa5;
+}
+
+.answer-btn.correct {
+    background-color: #4caf50;
+}
+
+.answer-btn.incorrect {
+    background-color: #f44336;
+    opacity: 0.7;
+}
+
+.answer-explanation {
+    font-size: 14px;
+    color: #cccccc;
+    margin-top: 5px;
+    display: none;
+}
+
+.quiz-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.action-btn {
+    padding: 12px 25px;
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #3367d6;
+}
+
+.action-btn.secondary {
+    background-color: #2c2c2e;
+}
+
+/* Écran des résultats */
+.results-screen {
+    text-align: center;
+}
+
+.results-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.results-score {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #4285f4;
+}
+
+/* Paramètres */
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #2c2c2e;
+    border-radius: 8px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4285f4;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+/* Ajouts pour la progression */
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #2c2c2e;
+    border-radius: 10px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4285f4, #34a853);
+    transition: width 0.5s ease;
+}
+
+.bts-validation {
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 8px;
+    background-color: #2c2c2e;
+    text-align: center;
+    font-weight: bold;
+}
+
+.progress-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.progress-table th {
+    background-color: #4285f4;
+    padding: 12px;
+    text-align: left;
+}
+
+.progress-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #333;
+}
+
+.progress-table tr:nth-child(even) {
+    background-color: #252525;
+}
+
+.competence-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    background-color: #34a853;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-right: 5px;
+}

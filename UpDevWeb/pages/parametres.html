@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpDev - Paramètres</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<header class="app-header">
+    <a href="../pages/parametres.html" class="header-link">Paramètres</a>
+    <a href="../index.html" class="header-title">UpDev</a>
+    <div></div>
+</header>
+
+<div class="app-container">
+    <h1 class="page-title">Paramètres</h1>
+    <div class="settings-container">
+        <div class="setting-item">
+            <h3>Notifications</h3>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="setting-item">
+            <h3>Mode sombre</h3>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+</div>
+<!-- Ajouter une option -->
+<div class="setting-item">
+    <h3>Effacer ma progression</h3>
+    <button id="reset-progress" class="action-btn secondary">Réinitialiser</button>
+</div>
+
+<script>
+    document.getElementById('reset-progress').addEventListener('click', () => {
+        if (confirm("Êtes-vous sûr de vouloir réinitialiser toute votre progression ?")) {
+            localStorage.removeItem('btsSioProgress');
+            alert("Progression réinitialisée !");
+        }
+    });
+</script>
+</body>
+</html>
